@@ -41,6 +41,12 @@
     "schemastery": "^3.18.0",
     "ws": "^8.18.0"
   },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "engines": {
+    "node": "^22.19 || >=24"
+  },
   "files": [
     "lib/**/*.js",
     "cordis.patch.yml",
