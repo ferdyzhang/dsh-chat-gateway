@@ -1,0 +1,6 @@
+# dsh-chat-gateway bundle layer — applied when a profile lists this bundle
+# (package.json declares `dsh.bundle.patch` pointing at this file).
+# `name` is the PACKAGE NAME (resolved through the profile's node_modules).
+- insert:
+    - id: im-gateway
+      name: dsh-chat-gateway

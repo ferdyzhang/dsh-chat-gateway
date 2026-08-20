@@ -1,0 +1,46 @@
+{
+  "name": "dsh-chat-gateway",
+  "description": "Multi-channel message gateway for the dsh web GUI: connects 钉钉(Stream) / 飞书(长连接) / 企业微信(自建应用回调) / QQ(OneBot 反向WS) bots to a dsh agent with per-conversation sessions (群聊/单聊历史隔离) — every channel gets its own card in an independent 「消息通道」 settings section. Installed via `dsh plugin --profile web add dsh-chat-gateway`.",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "dingtalk",
+    "feishu",
+    "wecom",
+    "qq",
+    "onebot",
+    "im",
+    "bot"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "dependencies": {
+    "schemastery": "^3.18.0",
+    "ws": "^8.18.0"
+  },
+  "files": [
+    "lib/**/*.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "license": "Apache-2.0"
+}
