@@ -1,7 +1,7 @@
 {
   "name": "dsh-chat-gateway",
   "description": "Multi-channel message gateway for the dsh web GUI: connects 钉钉(Stream) / 飞书(长连接) / 企业微信(自建应用回调) / QQ(OneBot 反向WS) bots to a dsh agent with per-conversation sessions (群聊/单聊历史隔离) — every channel gets its own card in an independent 「消息通道」 settings section. Installed via `dsh plugin --profile web add dsh-chat-gateway`.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "repository": {
     "type": "git",
