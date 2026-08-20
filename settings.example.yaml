@@ -1,0 +1,49 @@
+# dsh-chat-gateway 配置模板
+# 用法：把需要的段落追加/合并进 ~/.dsh/settings.yaml，改完重启 dsh web 生效。
+# secret 字段为只写：界面与回读都不会显示，留空表示保持不变。
+
+# ---- 钉钉：自定义机器人 Stream 模式（无需公网）----
+im-gateway-dingtalk:
+  enabled: false          # true = 启用
+  clientId: ""            # 机器人 AppKey（Stream 模式）
+  clientSecret: ""        # 机器人 AppSecret
+
+# ---- 飞书：开放平台企业自建应用 · 长连接（无需公网）----
+# 事件订阅需选「使用长连接接收事件」并添加 im.message.receive_v1
+im-gateway-feishu:
+  enabled: false
+  appId: ""               # cli_ 开头的 App ID
+  appSecret: ""           # App Secret
+
+# ---- 企业微信：自建应用回调（需要公网回调 URL）----
+# 反向代理把公网地址转发到 127.0.0.1:<port>/wecom，管理后台填 http://<公网地址>/wecom
+im-gateway-wecom:
+  enabled: false
+  corpId: ""              # 企业 ID（corpid）
+  agentId: ""             # 自建应用 AgentId
+  secret: ""              # 应用 Secret
+  token: ""               # 回调 Token（管理后台「接收消息」自填）
+  encodingAesKey: ""      # 回调 EncodingAESKey（43 位）
+  port: 8787              # 本机回调监听端口（仅回环）
+
+# ---- QQ：OneBot 11 反向 WebSocket（NapCat/LLOneBot，无需公网）----
+# NapCat/LLOneBot 里反向 WS 填 ws://127.0.0.1:<port>/
+im-gateway-qq:
+  enabled: false
+  port: 6700
+
+# ---- 所有通道共用的 agent 运行环境 ----
+im-gateway-agent:
+  workspace: ""           # 工作目录，留空用首个已注册工作区
+  agentPreset: ""         # agent 预设 id，留空用全局默认
+  model: ""               # 模型 id，留空用运行时默认
+  provider: ""            # provider，留空用运行时默认
+
+# ---- （可选）受信代理远程桥：让远程浏览器也能图形化配置 ----
+# 开启后还需要：反向代理把 /chat-gateway-bridge/* 转发到 127.0.0.1:<dsh端口>
+# 并注入令牌头 X-Dsh-Chat-Gateway-Bridge-Token；启动 dsh 前注入环境变量
+# export DSH_CHAT_GATEWAY_BRIDGE_TOKEN='<随机长字符串>'
+# im-gateway-bridge:
+#   enabled: false
+#   trustedHosts: "dsh.example.com"        # 必须与浏览器访问的 Host 完全一致（含非标端口）
+#   tokenEnv: DSH_CHAT_GATEWAY_BRIDGE_TOKEN
